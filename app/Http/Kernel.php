@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckAge;
+use App\Http\Middleware\CheckSex;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -41,6 +43,11 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+
+        'yang' =>[
+            'checkAge' => CheckAge::class,
+            'CheckSex' => CheckSex::class,
+        ],
     ];
 
     /**
@@ -57,5 +64,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'checkAge' => CheckAge::class,
+        'CheckSex' => CheckSex::class,
     ];
 }
