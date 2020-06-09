@@ -20,11 +20,19 @@ Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/test', 'Test\IndexController@index',function (){
+//Route::get('/test', 'Test\IndexController@index',function (){
+//
+//    var_dump(\Illuminate\Support\Facades\Route::currentRouteAction());
+//    return false;
+//})->name('test');
+Route::group(['middleware'=>'web'],function (){
 
-    var_dump(\Illuminate\Support\Facades\Route::currentRouteAction());
-    return false;
-})->name('test');
+    Route::get('/redisString', 'Redis\IndexController@index')->name('redisString');
+    Route::get('/redisList', 'Redis\ListController@index')->name('redisList');
+    Route::get('/redisSet', 'Redis\SetController@index')->name('redisSet');
+    Route::get('/redisZset', 'Redis\ZsetController@index')->name('redisZset');
+    Route::get('/redisHash', 'Redis\HashController@index')->name('redisHash');
+});
 Route::get('/redirect', function () {
 //    return redirect()->route('home');
     print_r('1'.PHP_EOL);
