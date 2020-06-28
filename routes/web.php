@@ -11,20 +11,20 @@
 |
 */
 use App\Http\Middleware\CheckAge;
+use App\User;
+use App\Http\Resources\UserCollection;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/user', function () {
+    return new UserCollection(User::find(11));
+});
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
-//Route::get('/test', 'Test\IndexController@index',function (){
-//
-//    var_dump(\Illuminate\Support\Facades\Route::currentRouteAction());
-//    return false;
-//})->name('test');
+Route::get('/test', 'Test\IndexController@index')->name('test');
 Route::group(['middleware'=>'web'],function (){
 
     Route::get('/redisString', 'Redis\IndexController@index')->name('redisString');
