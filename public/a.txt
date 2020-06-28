@@ -1,0 +1,5 @@
+Route::get('/redisString', 'Redis\IndexController@index')->name('redisString');
+Route::get('/redisList', 'Redis\ListController@index')->name('redisList');
+Route::get('/redisSet', 'Redis\SetController@index')->name('redisSet');
+Route::get('/redisZset', 'Redis\ZsetController@index')->name('redisZset');
+Route::get('/redisHash', 'Redis\HashController@index')->name('redisHash');
