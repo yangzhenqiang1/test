@@ -14,7 +14,6 @@ class UserCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        dd($this);
         return [
             'id' => $this->id,
             'name' => $this->name,
