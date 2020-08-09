@@ -2,22 +2,26 @@
 
 namespace App\Http\Controllers\Push;
 
+use App\Common;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
-    //
+    /**
+     * android 友盟推送
+     */
     public function index(){
         $http_method = 'POST';
-        $url = 'https://msgapi.umeng.com/api/send';
+        $push_config = Common::pushConfig();//推送需要配置的信息
+        $url = $push_config['url'];
         $params = [
             'policy' => [
                 'expire_time' => '2020-04-12 17:31:57'
             ],
             'description' => 'yang_test7',
             'production_mode' => 'true',
-            'appkey' => '5c2092c1f1f556acc100039c',
+            'appkey' => $push_config['appkey'],
             'payload' => [
                 'body' => [
                     'title' => 'seven',
@@ -33,12 +37,12 @@ class IndexController extends Controller
                     'name' => 'yang'
                 ]
             ],
-            'device_tokens' => 'AqOHXhtYEWo6AU_KpA4mQ_VEcs8fgwvmo4qKcxL7tUYc',
+            'device_tokens' => $push_config['device_tokens'],
             'type' => 'unicast',
             'timestamp' => time()
         ];
         $post_body = json_encode($params);
-        $app_master_secret = 'mabngscegmsixdcovp68wfb6vvshpmur';
+        $app_master_secret = $push_config['app_master_secret'];
         $md5_str = md5($http_method.$url.$post_body.$app_master_secret);
 
 

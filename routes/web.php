@@ -24,3 +24,4 @@ Route::get('/redirect', function () {
     print_r('1'.PHP_EOL);
     return "路由是：" . route('home');
 });
+Route::get('/push', 'Push\IndexController@index')->name('push');
