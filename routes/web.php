@@ -18,10 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/test', 'Test\IndexController@index')->name('test');
 Route::get('/redirect', function () {
 //    return redirect()->route('home');
     print_r('1'.PHP_EOL);
     return "路由是：" . route('home');
 });
+//android推送
 Route::get('/push', 'Push\IndexController@index')->name('push');
+Route::group(['middleware'=>'request'],function (){
+});
+
+Route::get('/test', 'Test\IndexController@index')->name('test');
+Route::get('/test1', 'Test\IndexController@index1')->name('test');
